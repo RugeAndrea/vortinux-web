@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vortinux</title>
+  <link rel="icon" type="image/png" href="img/logobanner.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://t.contentsquare.net/uxa/d829eb68c4066.js"></script>
+  
+  <style>
+    :root{
+      --bg:#05060a;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --pink:#d946ef;
+      --cyan:#22d3ee;
+    }
+
+    body{
+      margin:0;
+      font-family:"Outfit",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a{text-decoration:none;color:inherit}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:10;
+      background:rgba(5,6,10,.6);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid #1f2937;
+    }
+    .container{width:min(1200px,92%);margin:auto;}
+    .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand img{height:100px}
+    nav a{margin-left:18px;font-weight:600;color:#cbd5e1}
+    nav a:hover{color:white}
+    .cta{
+      padding:8px 14px;border-radius:999px;
+      background:linear-gradient(90deg,var(--pink),var(--cyan));
+      font-weight:800;color:#0b0d16;
+    }
+
+    /* FULL-WIDTH HERO */
+    .hero {
+      width:100%;
+      height:550px;
+      background-image:url("img/nave_espacial.png");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+
+    /* Overlay oscuro para legibilidad */
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.55)
+      );
+    }
+
+    /* Texto del hero */
+    .hero .title {
+      position:relative;
+      font-size:clamp(40px,5vw,70px);
+      font-weight:800;
+      background:linear-gradient(90deg,var(--pink),var(--cyan));
+      -webkit-background-clip:text;
+      color:transparent;
+      text-shadow:0 0 20px rgba(0,0,0,0.7);
+      margin:0 20px;
+    }
+
+    .hero .subtitle {
+      position:relative;
+      font-size:18px;
+      max-width:760px;
+      color:white;
+      margin-top:16px;
+      text-shadow:0 0 12px rgba(0,0,0,1);
+      padding:0 20px;
+    }
+
+    /* Secciones */
+    .section{padding:60px 0}
+    .section-title{
+      text-align:center;
+      font-size:32px;
+      font-weight:800;
+      margin-bottom:20px;
+      background:linear-gradient(90deg,var(--pink),var(--cyan));
+      -webkit-background-clip:text;color:transparent;
+    }
+    .center{text-align:center;color:var(--muted);max-width:760px;margin:auto;font-size:17px}
+
+    /* Bullets */
+    .bullets{
+      margin-top:40px;
+      display:flex;flex-wrap:wrap;
+      justify-content:center;gap:20px;
+    }
+    .bullet{
+      width:280px;
+      background:#0f1222;
+      border:1px solid #1f2937;
+      padding:24px;
+      border-radius:18px;
+      text-align:center;
+      transition:.25s;
+    }
+    .bullet:hover{transform:translateY(-4px);border-color:#334155}
+    .bullet h4{
+      font-size:20px;font-weight:800;
+      background:linear-gradient(90deg,var(--pink),var(--cyan));
+      -webkit-background-clip:text;color:transparent;margin:0 0 10px;
+    }
+    .bullet p{color:var(--muted);font-size:15px;margin:0}
+
+    footer{
+      text-align:center;margin-top:60px;padding:20px 0;
+      border-top:1px solid #1f2937;color:#94a3b8;
+    }
+
+    /* Sección ¿Qué es Vortinux? rediseñada */
+.about-section {
+  padding: 130px 20px;
+  margin-top: -40px;
+  background: linear-gradient(
+    rgba(5,6,10,0),
+    rgba(5,6,10,1) 40%
+  );
+}
+
+/* Animación de fade-up */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-container {
+  width: min(900px, 90%);
+  margin: auto;
+  text-align: center;
+  padding: 55px 50px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 22px;
+
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.5),
+    0 0 12px rgba(217,70,239,0.15),
+    0 0 18px rgba(34,211,238,0.15);
+
+
+  /* glow pulsante */
+  position: relative;
+}
+
+@keyframes neonPulse {
+  0% {
+    box-shadow:
+      0 0 40px rgba(0,0,0,0.5),
+      0 0 10px rgba(217,70,239,0.15),
+      0 0 16px rgba(34,211,238,0.15);
+  }
+  100% {
+    box-shadow:
+      0 0 40px rgba(0,0,0,0.5),
+      0 0 18px rgba(217,70,239,0.32),
+      0 0 26px rgba(34,211,238,0.32);
+  }
+}
+
+.about-container:hover {
+  animation: neonPulse 1.5s ease-in-out alternate infinite;
+}
+
+.about-title {
+  font-size: 40px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 22px;
+}
+
+.about-text {
+  font-size: 19px;
+  line-height: 1.8;
+  color: var(--text);
+  opacity: 0.95;
+  font-weight: 300;
+}
+
+/* Sección: Por qué elegirnos — gamer + glow + animación */
+
+.features-section {
+  padding: 80px 20px 120px;
+  background: linear-gradient(
+    rgba(5,6,10,1) 20%,
+    rgba(40,5,50,0.25),
+    rgba(5,6,10,1) 80%
+  );
+  text-align: center;
+  position: relative;
+}
+
+/* Título gigante RGB */
+.features-title {
+  font-size: 46px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 60px;
+  text-shadow: 0 0 20px rgba(0,0,0,0.4);
+  animation: fadeUp 1s ease-out;
+}
+
+/* GRID */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* TARJETAS ÉPICAS */
+.feature-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 40px 26px;
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 0 35px rgba(0,0,0,0.5),
+    0 0 10px rgba(217,70,239,0.1),
+    0 0 14px rgba(34,211,238,0.1);
+
+  text-align: center;
+  animation: fadeUp 1s ease-out;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Iconos grandes gamer */
+.feature-icon {
+  font-size: 42px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Título dentro de las tarjetas */
+.feature-card h4 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Texto */
+.feature-card p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Hover gamer RGB */
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(217,70,239,0.4);
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.6),
+    0 0 20px rgba(217,70,239,0.4),
+    0 0 26px rgba(34,211,238,0.4);
+}
+
+/* CTA FLOTANTE — ACCESO ANTICIPADO */
+.floating-cta {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 9999;
+
+  background: linear-gradient(180deg, var(--pink), var(--cyan));
+  padding: 14px 8px;
+  border-radius: 12px 0 0 12px;
+
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+
+  font-weight: 800;
+  font-size: 15px;
+  color: #05060a;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  box-shadow: 0 0 14px rgba(0,0,0,0.4);
+  transition: 0.25s ease;
+  opacity: 0.85;
+}
+
+
+
+/* ---------------------- */
+/* RESPONSIVE NAVBAR */
+/* ---------------------- */
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 28px;
+  color: white;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  nav {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: rgba(5,6,10,0.95);
+    width: 200px;
+    padding: 20px;
+    border-left: 1px solid #1f2937;
+    border-bottom: 1px solid #1f2937;
+    border-radius: 0 0 0 12px;
+    flex-direction: column;
+    display: none;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav a {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
+  .cta {
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* ---------------------- */
+/* CTA FLOTANTE RESPONSIVE */
+/* ---------------------- */
+/* FIX DEFINITIVO — BOTÓN VERTICAL EN MÓVIL SIN SCROLL HORIZONTAL */
+@media (max-width: 750px) {
+
+  body {
+    overflow-x: hidden !important; /* evita desplazamiento lateral */
+  }
+
+  .floating-cta {
+    position: fixed !important;
+    top: 50% !important;
+    bottom: auto !important;
+    right: 0 !important; 
+    transform: translateY(-50%) !important;
+
+    /* Mantener vertical */
+    writing-mode: vertical-rl !important;
+    text-orientation: mixed !important;
+
+    /* Tamaño reducido para que NO sobresalga */
+    padding: 10px 6px !important;
+    font-size: 12px !important;
+    border-radius: 10px 0 0 10px !important;
+
+    /* Evitar que el gradiente se expanda y genere overflow */
+    width: auto !important;
+    max-width: 38px !important;
+
+    background: linear-gradient(180deg, var(--pink), var(--cyan)) !important; 
+  }
+
+  .floating-cta:hover {
+    transform: translateY(-50%) scale(1.03) !important;
+  }
+}
+
+@media (max-width: 750px) {
+
+  .about-container {
+    width: 90% !important;        /* usar el ancho exacto del móvil */
+    padding: 30px 20px !important; /* reducir padding lateral */
+    box-sizing: border-box !important; /* evitar desbordamiento */
+  }
+
+  .about-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* BOTÓN FLOTANTE WHATSAPP OFICIAL */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366; /* Verde oficial */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 99999;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-float img {
+  width: 34px;   /* tamaño oficial del ícono dentro del círculo */
+  height: 34px;
+  pointer-events: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.07);
+}
+
+
+  </style>
+</head>
+
+<script>
+function toggleMenu() {
+  document.querySelector("nav").classList.toggle("open");
+}
+</script>
+
+<body>
+
+<header>
+  <div class="container bar">
+    <div class="brand">
+      <img src="img/logocompleto.png" alt="Vortinux" />
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#quienes">Qué es Vortinux</a>
+      <a href="#caracteristicas">Ventajas</a>
+      <a class="cta" href="index_encuesta.html">Únete ahora</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO FULL-WIDTH -->
+<section class="hero">
+  <h1 class="title">Vortinux ha llegado a Colombia</h1>
+  <p class="subtitle">
+    La forma más fácil de hacer torneos épicos para tu comunidad.
+    Automatiza todo con un bot inteligente: registros, brackets y resultados.
+    Premios reales, torneos reales, crecimiento real.
+  </p>
+</section>
+
+<!-- Qué es Vortinux -->
+<section id="quienes" class="about-section">
+  <div class="about-container">
+    <h2 class="about-title">¿Qué es Vortinux?</h2>
+
+  <p class="about-text">
+    Vortinux es la plataforma que hace tus torneos por ti.
+    Todo automático: inscripciones, brackets, horarios, avisos en Discord y resultados en tiempo real. Tú solo eliges el juego y la fecha.
+
+    Sin enredos, sin hojas de cálculo, sin estrés.
+    Además, puedes entregar premios a tu comunidad sin encargarte de nada.
+    Vortinux te da la potencia de un operador profesional con la facilidad de un bot.
+  </p>
+    <a class="cta" href="index_encuesta.html">Únete ahora</a>
+  </div>
+</section>
+
+
+<!-- Ventajas -->
+<section id="caracteristicas" class="features-section">
+  <h2 class="features-title">Poder para tus torneos</h2>
+
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h4>Automación total</h4>
+      <p>
+
+      Organiza torneos completos en minutos.
+      Nuestro sistema genera inscripciones, brackets, horarios y resultados sin que tengas que hacer nada manual.
+      Cero estrés. Cero Excel. Cero caos.
+
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🎮</div>
+      <h4>Integración con Discord </h4>
+      <p>
+
+        Vortinux vive donde vive tu comunidad.
+        El bot gestiona registros, avisos, emparejamientos y resultados directamente en Discord, haciendo que todo fluya de forma automática.
+
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <h4>Personalización extrema</h4>
+      <p>
+
+        Crea torneos tal como los imaginas: reglas, formatos, número de jugadores, estética visual y estilos.
+        Vortinux se adapta a la identidad de tu comunidad o marca.
+
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🎧</div>
+      <h4>Premios físicos reales</h4>
+      <p>
+          Puedes premiar a tus ganadores con diademas y mouses reales sin preocuparte por la logística.
+          Nosotros nos encargamos del envío y seguimiento.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🏆</div>
+      <h4>Estadísticas automáticas (IA)</h4>
+      <p>
+        Generamos resúmenes, tablas, rendimiento y reportes automáticos para tus torneos.
+        Ideal para mejorar tu comunidad y mostrar resultados a patrocinadores o marcas.
+      </p>
+    </div>
+
+</section>
+
+
+<footer>
+  © 2025 Vortinux — Powered by gamers, for gamers.
+</footer>
+<a href="index_encuesta.html" 
+   target="_blank" 
+   class="floating-cta">
+  Únete al acceso anticipado
+</a>
+
+<a href="https://wa.me/573217324257" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+
+
+</body>
+</html>
