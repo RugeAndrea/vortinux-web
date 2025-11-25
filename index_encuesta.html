@@ -1,152 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Encuesta para Creadores - Vortinux</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Tipografía Audiowide para el nombre de la marca -->
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <title>Encuesta para Creadores - Vortinux</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logobanner.png">
+
+  <!-- Tipografía principal del sitio -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos globales del sitio -->
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    function toggleMenu() {
+      document.querySelector("nav").classList.toggle("open");
+    }
+  </script>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0A0F1A 0, #020617 45%, #000 100%);
-      color: #e5e7eb;
-    }
+    /* Estilos mínimos necesarios SOLO para esta página */
 
     .wrapper {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
+      width: min(1100px, 92%);
+      margin: 140px auto 60px;
     }
 
-    header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    /* LOGO DEL HEADER (opcional, lo dejamos por si quieres usarlo algún día)
-    .logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #00A1FF, #C041FF);
-      box-shadow: 0 0 18px rgba(43, 214, 255, 0.5);
-    }
-    */
-
-    .brand-name {
-      font-family: 'Audiowide', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: linear-gradient(to right, #00A1FF, #C041FF);
+    .title-gradient {
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
       -webkit-background-clip: text;
       color: transparent;
+      font-weight: 800;
     }
 
-    .hero {
+    .survey-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
-      gap: 24px;
-      align-items: start;
-      margin-bottom: 24px;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
     }
 
     @media (max-width: 900px) {
-      .hero {
+      .survey-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    h1 {
-      font-size: clamp(1.9rem, 3vw, 2.4rem);
-      margin: 0 0 8px;
-      font-weight: 800;
-    }
-
-    .highlight {
-      background: linear-gradient(to right, #00A1FF, #C041FF);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-      color: #94a3b8;
-      margin-bottom: 18px;
-      line-height: 1.6;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      padding: 4px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: #cbd5e1;
-      background: rgba(15, 23, 42, 0.8);
-      margin-bottom: 12px;
-    }
-
-    .pill {
-      display: inline-block;
-      font-size: 0.78rem;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(43, 214, 255, 0.6);
-      color: #2BD6FF;
-      margin-right: 6px;
-      margin-bottom: 4px;
-    }
-
-    .copy-card {
-      padding: 18px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(0, 161, 255, 0.45);
-      background: radial-gradient(circle at top left, rgba(0, 161, 255, 0.16), transparent 60%);
-      font-size: 0.92rem;
-      color: #d1d5db;
-      box-shadow: 0 0 26px rgba(0, 161, 255, 0.25);
-    }
-
-    .copy-card strong {
-      color: #ffffff;
-    }
-
-    /* Tarjeta del formulario */
+    /* Tarjeta estilo Vortinux para el iFrame */
     .iframe-card {
-      border-radius: 18px;
+      border-radius: 22px;
       overflow: hidden;
-      border: 1px solid rgba(192, 65, 255, 0.5);
-      background: #050816;
-      box-shadow: 0 16px 60px rgba(192, 65, 255, 0.35);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      box-shadow:
+        0 0 35px rgba(0,0,0,0.5),
+        0 0 12px rgba(217,70,239,0.15),
+        0 0 18px rgba(34,211,238,0.15);
     }
 
     .iframe-header {
-      padding: 10px 14px;
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(192, 65, 255, 0.6);
-      background: rgba(192, 65, 255, 0.08);
+      align-items: center;
     }
 
     .iframe-header span {
-      font-size: 0.8rem;
-      color: #E9D5FF;
+      font-size: 0.85rem;
       font-weight: 600;
+      color: var(--text);
     }
 
     .status-dot {
@@ -157,123 +84,129 @@
       box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.25);
     }
 
-    .iframe-container {
-      width: 100%;
-      height: min(1100px, 100vh - 120px);
-      background: #0A0F1A;
-    }
-
     iframe {
-      width: 100%;
-      height: 100%;
       border: 0;
+      width: 100%;
+      height: min(1100px, 100vh - 200px);
     }
 
-    .footnote {
-      font-size: 0.8rem;
-      color: #64748b;
-      margin-top: 10px;
+    .copy-card {
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(0,0,0,0.45);
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
 
-    a {
-      color: #2BD6FF;
-      text-decoration: none;
+    .pill {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-right: 8px;
+      margin-top: 8px;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-	
-	
   </style>
+
 </head>
 
 <body>
-  <div class="wrapper">
 
-    <!-- HEADER -->
-    <header>
-      <div class="brand-name">VORTINUX</div>
-    </header>
+<!-- HEADER UNIFICADO -->
+<header>
+  <div class="container bar">
+    <div class="brand">
+      <img src="img/logocompleto.png" alt="Vortinux">
+    </div>
 
-    <!-- BANNER DEL LOGO (OPCIÓN 2) -->
-    <div style="text-align:center; margin-bottom:26px; margin-top:10px;">
-      <img src="logocompletotransp.png" alt="Vortinux logo" style="width:200px; filter: drop-shadow(0 0 12px rgba(0,161,255,0.35));">
-      <div style="
-        margin-top:6px;
-        font-family: 'Audiowide', sans-serif;
-        font-size: 1.4rem;
-        letter-spacing: 0.12em;
-        background: linear-gradient(to right, #00A1FF, #C041FF);
-        -webkit-background-clip: text;
-        color: transparent;
-      ">
-       
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <nav>
+      <a class="cta" href="index.html">Volver a la página principal</a>
+    </nav>
+  </div>
+</header>
+
+<!-- CONTENIDO DE LA ENCUESTA -->
+<div class="wrapper">
+
+  <section class="survey-grid">
+
+    <!-- COLUMNA DE TEXTO -->
+    <div>
+      <div class="pill">🧪 Programa para creadores de torneos</div>
+
+      <h1 class="title-gradient" style="font-size:36px; line-height:1.2; margin-bottom:14px;">
+        Ayúdanos a construir la próxima herramienta para organizadores de torneos.
+      </h1>
+
+      <p style="color:var(--muted); font-size:18px; line-height:1.7;">
+        Vortinux es una marca de tecnología gamer enfocada en automatizar lo tedioso
+        de gestionar torneos. Antes de lanzar, queremos escuchar primero a quienes ya lideran
+        comunidades: creadores como tú.
+      </p>
+
+      <div class="copy-card" style="margin-top:25px;">
+        <strong style="color:white;">¿Qué ganas tú?</strong><br><br>
+        • Acceso prioritario al MVP de Vortinux <br>
+        • Posibilidad de ser Aliado Fundador (Vortinux Origin)<br>
+        • Participar en el Torneo de Fin de Año como organizador<br>
+        • Influencia directa en las funciones y prioridades del producto<br><br>
+        La encuesta toma entre <strong>2 y 3 minutos</strong>. ¡Gracias por apoyar proyectos nuevos! 💜
+      </div>
+
+      <div style="margin-top:20px;">
+        <span class="pill">🎮 Torneos online</span>
+        <span class="pill">⚙️ Automatización</span>
+        <span class="pill">🚀 Tecnología gamer</span>
+        <span class="pill">🤝 Comunidad</span>
       </div>
     </div>
 
-    <section class="hero">
-      <div>
-        <div class="badge">
-          🧪 Programa para creadores de torneos
+    <!-- COLUMNA DEL FORMULARIO -->
+    <div>
+      <div class="iframe-card">
+
+        <div class="iframe-header">
+          <span>Encuesta para creadores — Vortinux</span>
+          <div class="status-dot"></div>
         </div>
 
-        <h1>
-          Ayúdanos a construir la próxima herramienta para
-          <span class="highlight">organizadores de torneos</span>.
-        </h1>
+        <iframe 
+          src="https://forms.gle/adkBYkuXK18PgKFu7"
+          loading="lazy">
+        </iframe>
 
-        <p class="subtitle">
-          Vortinux es una marca de tecnología gamer enfocada en automatizar todo lo tedioso
-          de gestionar torneos. Antes de lanzar, queremos escuchar primero a quienes ya lideran
-          comunidades: creadores como tú.
-        </p>
-
-        <div class="copy-card">
-          <p style="margin-top: 0;">
-            <strong>¿Qué ganas tú?</strong><br>
-            • Acceso prioritario al MVP de Vortinux<br>
-            • Posibilidad de ser Aliado Fundador (Vortinux Origin)<br>
-            • Participar en el Torneo de Fin de Año como organizador<br>
-            • Influencia directa en las funciones y prioridades del producto
-          </p>
-          <p style="margin-bottom: 0;">
-            La encuesta toma entre <strong>2 y 3 minutos</strong>. Gracias por apoyar proyectos nuevos. 💜
-          </p>
-        </div>
-
-        <div style="margin-top: 16px;">
-          <span class="pill">🎮 Torneos online</span>
-          <span class="pill">⚙️ Automatización</span>
-          <span class="pill">🚀 Tecnología gamer</span>
-          <span class="pill">🤝 Comunidad</span>
-        </div>
       </div>
 
-      <div>
-        <div class="iframe-card">
-          <div class="iframe-header">
-            <span>Encuesta para creadores — Vortinux</span>
-            <div class="status-dot"></div>
-          </div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-top:10px;">
+        Si el formulario no carga, ábrelo directamente
+        <a href="https://forms.gle/adkBYkuXK18PgKFu7" target="_blank" style="color:var(--cyan)">
+          aquí
+        </a>.
+      </p>
+    </div>
 
-          <div class="iframe-container">
+  </section>
+</div>
 
-            <!-- REEMPLAZA ESTA URL POR LA DE TU GOOGLE FORM (CON embedded=true) -->
-            <iframe 
-              src="https://forms.gle/adkBYkuXK18PgKFu7" frameborder="0" marginheight="0" marginwidth="0"
-              loading="lazy"
-            ></iframe>
+<!-- FOOTER UNIFICADO -->
+<footer>
+  © 2025 Vortinux — Powered by gamers, for gamers.
+</footer>
 
-          </div>
-        </div>
 
-        <p class="footnote">
-          Si el formulario no carga, también puedes abrirlo directamente  
-          <a href="https://forms.gle/adkBYkuXK18PgKFu7" target="_blank">en este enlace</a>.
-        </p>
-      </div>
-    </section>
-  </div>
+<!-- WHATSAPP OFICIAL -->
+<a href="https://wa.me/573217324257" class="whatsapp-float" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
+
 </body>
 </html>
